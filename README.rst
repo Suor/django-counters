@@ -8,7 +8,9 @@ Usage
 
 models.py::
 
-    counters.add('hits')
+    import counters
+
+    @counters.add('hits')
     class Item(models.Model):
         ...
 
@@ -17,12 +19,11 @@ views.py::
     def list(request):
         items = Item.objects.filter(...)
         counters.fill(items)
-
         ...
 
     def detail(request, pk):
         item = Item.objects.get(pk=pk)
-        item.incr_hits
+        item.incr_hits()
 
 list.html::
 
