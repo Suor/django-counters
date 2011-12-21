@@ -3,6 +3,27 @@ Redis Counters
 
 Counters for django models using redis.
 
+
+Setup
+-----
+
+settings.py::
+
+    REDIS = {
+        'host': 'localhost',
+        'port': 6379,
+        'db': 1,
+        'socket_timeout': 2,
+    }
+
+    COUNTERS_REDISES = {
+        'default': dict(REDIS, db=4),
+        'krasnoyarsk': dict(REDIS, host='krasnoyarsk.yoursite.ru', db=4, socket_timeout=5),
+        'moscow': dict(REDIS, host='moscow.yoursite.ru', db=4, socket_timeout=5)
+    }
+    COUNTERS_REDISES.pop(SERVER_LOCATION)
+
+
 Usage
 -----
 
