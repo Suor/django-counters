@@ -39,7 +39,7 @@ views.py::
 
     def list(request):
         items = Item.objects.filter(...)
-        counters.fill(items)
+        counters.fill(items, 'hits') # queryset or list of objects
         ...
 
     def detail(request, pk):
