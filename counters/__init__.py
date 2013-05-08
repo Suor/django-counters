@@ -49,7 +49,8 @@ def add(field_name):
             cls._counters = []
         cls._counters.append(field_name)
 
-        post_delete.connect(curry(_post_delete, field_name), weak=False, dispatch_uid=(cls, field_name))
+        post_delete.connect(curry(_post_delete, field_name), sender=cls,
+                            weak=False, dispatch_uid=(cls, field_name))
 
         return cls
     return decorator
